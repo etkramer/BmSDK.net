@@ -1,0 +1,102 @@
+---
+import { css } from 'styled-system/css'
+import { Braces, Bug, FileCode2 } from '@/lib/icons'
+
+const features = [
+  {
+    icon: Braces,
+    title: 'The game&rsquo;s own API, in C#',
+    body: 'The SDK mirrors the engine&rsquo;s UnrealScript API, so you work with the game&rsquo;s real classes — pawns, characters, packages — as C# types, with full IntelliSense.',
+  },
+  {
+    icon: Bug,
+    title: 'Write and debug in Visual Studio',
+    body: 'Open the solution, write your script, and press F5. It&rsquo;s a normal C# project: real breakpoints, real debugging, and fast iteration.',
+  },
+  {
+    icon: FileCode2,
+    title: 'Share mods as source',
+    body: 'Script mods are just .cs files. Players drop them into BmGame\\Scripts and they run — no build step, no packaging, no installers.',
+  },
+]
+---
+
+<section
+  class={css({
+    borderTop: '1px solid',
+    borderColor: 'border.subtle',
+    bg: 'bg.subtle',
+  })}
+>
+  <div
+    class={css({
+      maxW: '1080px',
+      mx: 'auto',
+      px: { base: '4', md: '6' },
+      py: { base: '16', md: '24' },
+    })}
+  >
+  <h2
+    class={css({
+      fontSize: { base: '2xl', md: '4xl' },
+      fontWeight: 'bold',
+      letterSpacing: 'tight',
+      color: 'fg.default',
+      maxW: '34rem',
+    })}
+  >
+    A full modding SDK
+  </h2>
+  <p class={css({ mt: '3', fontSize: 'md', color: 'fg.muted', maxW: '38rem' })}>
+    Everything you need to build script mods, from the API down to how players
+    install them.
+  </p>
+
+  <div
+    class={css({
+      mt: '12',
+      display: 'grid',
+      gridTemplateColumns: { base: '1fr', md: 'repeat(3, 1fr)' },
+      gap: { base: '10', md: '8' },
+    })}
+  >
+    {
+      features.map((feature) => (
+        <div>
+          <div
+            class={css({
+              display: 'grid',
+              placeItems: 'center',
+              w: '10',
+              h: '10',
+              borderRadius: 'lg',
+              bg: 'gh.neutralMuted',
+              color: 'gh.link',
+            })}
+          >
+            <feature.icon size={20} />
+          </div>
+          <h3
+            class={css({
+              mt: '5',
+              fontSize: 'lg',
+              fontWeight: 'semibold',
+              color: 'fg.default',
+            })}
+            set:html={feature.title}
+          />
+          <p
+            class={css({
+              mt: '2',
+              fontSize: 'sm',
+              lineHeight: 'relaxed',
+              color: 'fg.muted',
+            })}
+            set:html={feature.body}
+          />
+        </div>
+      ))
+    }
+    </div>
+  </div>
+</section>

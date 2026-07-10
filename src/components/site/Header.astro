@@ -1,0 +1,105 @@
+---
+import { css } from 'styled-system/css'
+import GithubIcon from './GithubIcon.astro'
+
+const navLinks = [
+  { label: 'Arkham City', href: 'https://github.com/etkramer/BmSDK' },
+  { label: 'Arkham Knight', href: 'https://github.com/etkramer/BmSDK-AK' },
+  { label: 'Wiki', href: 'https://github.com/etkramer/BmSDK/wiki' },
+  { label: 'Releases', href: 'https://github.com/etkramer/BmSDK/releases/latest' },
+]
+---
+
+<header
+  class={css({
+    position: 'sticky',
+    top: '0',
+    zIndex: '50',
+    borderBottom: '1px solid',
+    borderColor: 'border.subtle',
+    bg: 'color-mix(in srgb, var(--colors-bg-canvas) 80%, transparent)',
+    backdropFilter: 'blur(12px)',
+  })}
+>
+  <div
+    class={css({
+      maxW: '1080px',
+      mx: 'auto',
+      px: { base: '4', md: '6' },
+      h: '16',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    })}
+  >
+    <a
+      href="/"
+      class={css({
+        display: 'flex',
+        alignItems: 'center',
+        gap: '2.5',
+        fontWeight: 'bold',
+        fontSize: 'lg',
+        letterSpacing: 'tight',
+        color: 'fg.default',
+      })}
+    >
+      <span
+        class={css({
+          display: 'grid',
+          placeItems: 'center',
+          w: '7',
+          h: '7',
+          borderRadius: 'md',
+          bg: 'accent.default',
+          color: 'white',
+          fontSize: 'sm',
+          fontWeight: 'bold',
+          fontFamily: 'var(--font-mono)',
+        })}
+      >
+        {'{}'}
+      </span>
+      BmSDK
+    </a>
+
+    <nav
+      class={css({
+        display: { base: 'none', md: 'flex' },
+        alignItems: 'center',
+        gap: '6',
+      })}
+    >
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class={css({
+              fontSize: 'sm',
+              color: 'fg.muted',
+              transition: 'color 0.15s',
+              _hover: { color: 'fg.default' },
+            })}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a
+      href="https://github.com/etkramer/BmSDK"
+      aria-label="BmSDK on GitHub"
+      class={css({
+        display: 'flex',
+        alignItems: 'center',
+        gap: '2',
+        color: 'fg.muted',
+        transition: 'color 0.15s',
+        _hover: { color: 'fg.default' },
+      })}
+    >
+      <GithubIcon size={20} />
+    </a>
+  </div>
+</header>

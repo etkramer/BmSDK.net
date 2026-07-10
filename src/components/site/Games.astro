@@ -1,0 +1,145 @@
+---
+import { css } from 'styled-system/css'
+import { Button } from '@/components/ui/button'
+import { Building2, Skull, Download } from '@/lib/icons'
+import GithubIcon from './GithubIcon.astro'
+
+const games = [
+  {
+    icon: Building2,
+    name: 'Arkham City',
+    description:
+      'A full C# scripting SDK for Batman: Arkham City, based on the game’s own UnrealScript API.',
+    repo: 'https://github.com/etkramer/BmSDK',
+    releases: 'https://github.com/etkramer/BmSDK/releases/latest',
+  },
+  {
+    icon: Skull,
+    name: 'Arkham Knight',
+    description:
+      'The same scripting workflow for Batman: Arkham Knight, running on modern .NET.',
+    repo: 'https://github.com/etkramer/BmSDK-AK',
+    releases: 'https://github.com/etkramer/BmSDK-AK/releases/latest',
+  },
+]
+---
+
+<section
+  id="download"
+  class={css({
+    scrollMarginTop: '20',
+    borderTop: '1px solid',
+    borderColor: 'border.subtle',
+    bg: 'bg.subtle',
+  })}
+>
+  <div
+    class={css({
+      maxW: '1080px',
+      mx: 'auto',
+      px: { base: '4', md: '6' },
+      py: { base: '16', md: '24' },
+    })}
+  >
+    <h2
+      class={css({
+        fontSize: { base: '2xl', md: '4xl' },
+        fontWeight: 'bold',
+        letterSpacing: 'tight',
+        color: 'fg.default',
+      })}
+    >
+      Built for <span class={css({ color: 'gh.link' })}>both games</span>.
+    </h2>
+    <p
+      class={css({
+        mt: '3',
+        fontSize: 'md',
+        color: 'fg.muted',
+        maxW: '38rem',
+      })}
+    >
+      BmSDK targets Batman: Arkham City and Arkham Knight, with the same
+      scripting workflow for each. Pick your game and grab the latest release.
+    </p>
+
+    <div
+      class={css({
+        mt: '10',
+        display: 'grid',
+        gridTemplateColumns: { base: '1fr', md: '1fr 1fr' },
+        gap: '5',
+      })}
+    >
+      {
+        games.map((game) => (
+          <div
+            class={css({
+              display: 'flex',
+              flexDirection: 'column',
+              p: '6',
+              borderRadius: 'xl',
+              border: '1px solid',
+              borderColor: 'border.default',
+              bg: 'bg.canvas',
+            })}
+          >
+            <div
+              class={css({
+                display: 'grid',
+                placeItems: 'center',
+                w: '11',
+                h: '11',
+                borderRadius: 'lg',
+                border: '1px solid',
+                borderColor: 'border.default',
+                bg: 'bg.subtle',
+                color: 'fg.default',
+              })}
+            >
+              <game.icon size={22} />
+            </div>
+
+            <h3
+              class={css({
+                mt: '5',
+                fontSize: 'xl',
+                fontWeight: 'semibold',
+                color: 'fg.default',
+              })}
+            >
+              {game.name}
+            </h3>
+
+            <p
+              class={css({
+                mt: '2',
+                fontSize: 'sm',
+                lineHeight: 'relaxed',
+                color: 'fg.muted',
+                flex: '1',
+              })}
+            >
+              {game.description}
+            </p>
+
+            <div class={css({ mt: '6', display: 'flex', flexWrap: 'wrap', gap: '2.5' })}>
+              <a href={game.releases}>
+                <Button>
+                  <Download size={17} />
+                  Download
+                </Button>
+              </a>
+              <a href={game.repo}>
+                <Button variant="outline" colorPalette="gray">
+                  <GithubIcon size={16} />
+                  GitHub
+                </Button>
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+---
+import { Code } from 'astro:components'
+import { css } from 'styled-system/css'
+
+const snippet = `using BmSDK;
+using BmSDK.BmGame;
+
+[Script]
+public class DemoScript : Script
+{
+    public override void OnKeyDown(Keys key)
+    {
+        if (key != Keys.J)
+            return;
+
+        var player = Game.GetPlayerPawn();
+
+        // Spawn Joker in front of the player
+        Game.LoadPackage("FunFair");
+        var joker = new RPawnVillainThug(player.Location, player.Rotation);
+        joker.InitCharacter(RCharacter_Joker.StaticClass());
+
+        var dir = player.Rotation.ToDirection() with { Z = 0 };
+        joker.Move(dir * 100);
+    }
+}`
+---
+
+<div
+  class={css({
+    borderRadius: 'xl',
+    border: '1px solid',
+    borderColor: 'border.default',
+    bg: 'gh.inset',
+    overflow: 'hidden',
+    boxShadow: '0 16px 40px -12px rgba(1, 4, 9, 0.6)',
+  })}
+>
+  <div
+    class={css({
+      display: 'flex',
+      alignItems: 'center',
+      gap: '2',
+      px: '4',
+      h: '11',
+      borderBottom: '1px solid',
+      borderColor: 'border.default',
+      bg: 'bg.subtle',
+    })}
+  >
+    <div class={css({ display: 'flex', gap: '1.5' })}>
+      <span class={css({ w: '3', h: '3', borderRadius: 'full', bg: '#ff5f56' })} />
+      <span class={css({ w: '3', h: '3', borderRadius: 'full', bg: '#ffbd2e' })} />
+      <span class={css({ w: '3', h: '3', borderRadius: 'full', bg: '#27c93f' })} />
+    </div>
+    <span
+      class={css({
+        ml: '2',
+        fontSize: 'xs',
+        color: 'fg.muted',
+        fontFamily: 'var(--font-mono)',
+      })}
+    >
+      SpawnJoker.cs
+    </span>
+  </div>
+
+  <div
+    class={css({
+      p: '5',
+      overflowX: 'auto',
+      fontSize: 'sm',
+      lineHeight: 'relaxed',
+      '& pre': { background: 'transparent !important', margin: '0' },
+      '& code': { fontFamily: 'var(--font-mono)' },
+    })}
+  >
+    <Code code={snippet} lang="csharp" theme="github-dark" />
+  </div>
+</div>

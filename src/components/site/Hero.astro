@@ -1,0 +1,96 @@
+---
+import { css } from 'styled-system/css'
+import { Button } from '@/components/ui/button'
+import { Download, BookText } from '@/lib/icons'
+import CodePanel from './CodePanel.astro'
+---
+
+<section
+  class={css({
+    maxW: '1080px',
+    mx: 'auto',
+    px: { base: '4', md: '6' },
+    pt: { base: '16', md: '24' },
+    pb: { base: '16', md: '20' },
+    display: 'grid',
+    gridTemplateColumns: { base: '1fr', lg: '1fr 1fr' },
+    gap: { base: '12', lg: '10' },
+    alignItems: 'center',
+  })}
+>
+  <div>
+    <a
+      href="https://github.com/etkramer/BmSDK/releases/latest"
+      class={css({
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '2',
+        mb: '6',
+        px: '3',
+        py: '1',
+        borderRadius: 'full',
+        border: '1px solid',
+        borderColor: 'border.default',
+        bg: 'bg.subtle',
+        fontSize: 'xs',
+        color: 'fg.muted',
+        transition: 'border-color 0.15s',
+        _hover: { borderColor: 'border.default', color: 'fg.default' },
+      })}
+    >
+      <span
+        class={css({
+          w: '1.5',
+          h: '1.5',
+          borderRadius: 'full',
+          bg: 'accent.default',
+        })}
+      ></span>
+      Batman: Arkham City &amp; Arkham Knight
+    </a>
+
+    <h1
+      class={css({
+        fontSize: { base: '4xl', md: '6xl' },
+        fontWeight: 'bold',
+        lineHeight: '1.05',
+        letterSpacing: 'tight',
+        color: 'fg.default',
+      })}
+    >
+      Script the Arkham games<br />
+      <span class={css({ color: 'gh.link' })}>in C#.</span>
+    </h1>
+
+    <p
+      class={css({
+        mt: '6',
+        fontSize: { base: 'md', md: 'lg' },
+        lineHeight: 'relaxed',
+        color: 'fg.muted',
+        maxW: '30rem',
+      })}
+    >
+      BmSDK is a scripting platform for Batman: Arkham City and Arkham Knight.
+      Extend the game with custom gameplay and logic, using a full C# SDK built
+      on the engine&rsquo;s own UnrealScript API.
+    </p>
+
+    <div class={css({ mt: '8', display: 'flex', flexWrap: 'wrap', gap: '3' })}>
+      <a href="#download">
+        <Button size="lg">
+          <Download size={18} />
+          Download
+        </Button>
+      </a>
+      <a href="https://github.com/etkramer/BmSDK/wiki">
+        <Button variant="outline" colorPalette="gray" size="lg">
+          <BookText size={18} />
+          Documentation
+        </Button>
+      </a>
+    </div>
+  </div>
+
+  <CodePanel />
+</section>

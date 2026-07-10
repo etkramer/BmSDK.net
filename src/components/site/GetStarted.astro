@@ -1,0 +1,117 @@
+---
+import { css } from 'styled-system/css'
+import { Button } from '@/components/ui/button'
+import { Download, ArrowUpRight } from '@/lib/icons'
+
+const steps = [
+  'Download the latest release and open the .zip.',
+  'Copy the Binaries and BmGame folders into your game directory.',
+  'Drop any .cs script mods into BmGame\\Scripts, and you&rsquo;re set.',
+]
+---
+
+<section
+  class={css({
+    borderTop: '1px solid',
+    borderColor: 'border.subtle',
+    bg: 'bg.canvas',
+  })}
+>
+  <div
+    class={css({
+      maxW: '1080px',
+      mx: 'auto',
+      px: { base: '4', md: '6' },
+      py: { base: '16', md: '24' },
+      display: 'grid',
+      gridTemplateColumns: { base: '1fr', lg: '1fr 1fr' },
+      gap: { base: '10', lg: '16' },
+      alignItems: 'center',
+    })}
+  >
+    <div>
+      <h2
+        class={css({
+          fontSize: { base: '2xl', md: '4xl' },
+          fontWeight: 'bold',
+          letterSpacing: 'tight',
+          color: 'fg.default',
+        })}
+      >
+        Getting started is simple.
+      </h2>
+      <p class={css({ mt: '3', fontSize: 'md', color: 'fg.muted', maxW: '32rem' })}>
+        If you just want to play script mods, you don&rsquo;t need to build
+        anything. Install the release, then add scripts as you find them.
+      </p>
+
+      <div class={css({ mt: '8', display: 'flex', flexWrap: 'wrap', gap: '3' })}>
+        <a href="#download">
+          <Button size="lg">
+            <Download size={18} />
+            Download BmSDK
+          </Button>
+        </a>
+        <a href="https://github.com/etkramer/BmSDK/wiki/Creating-your-first-mod">
+          <Button variant="ghost" colorPalette="gray" size="lg">
+            Write your first mod
+            <ArrowUpRight size={16} />
+          </Button>
+        </a>
+      </div>
+    </div>
+
+    <ol
+      class={css({
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '3',
+        listStyle: 'none',
+      })}
+    >
+      {
+        steps.map((step, i) => (
+          <li
+            class={css({
+              display: 'flex',
+              gap: '4',
+              alignItems: 'flex-start',
+              p: '4',
+              borderRadius: 'lg',
+              border: '1px solid',
+              borderColor: 'border.default',
+              bg: 'bg.canvas',
+            })}
+          >
+            <span
+              class={css({
+                flexShrink: '0',
+                display: 'grid',
+                placeItems: 'center',
+                w: '7',
+                h: '7',
+                borderRadius: 'full',
+                bg: 'gh.neutralMuted',
+                fontSize: 'sm',
+                fontWeight: 'semibold',
+                color: 'fg.default',
+                fontFamily: 'var(--font-mono)',
+              })}
+            >
+              {i + 1}
+            </span>
+            <span
+              class={css({
+                fontSize: 'sm',
+                lineHeight: 'relaxed',
+                color: 'fg.muted',
+                pt: '0.5',
+              })}
+              set:html={step}
+            />
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

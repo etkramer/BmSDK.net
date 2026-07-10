@@ -1,0 +1,109 @@
+---
+import { Image } from 'astro:assets'
+import { css } from 'styled-system/css'
+
+import akGcpd from '@/assets/screenshots/ak-gcpd.png'
+import acRooftop from '@/assets/screenshots/ac-rooftop.png'
+import modGiant from '@/assets/screenshots/mod-giant.png'
+import debugXray from '@/assets/screenshots/debug-xray.png'
+import editorLights from '@/assets/screenshots/editor-lights.png'
+import aceChemicals from '@/assets/screenshots/ace-chemicals.png'
+
+// col/row spans map to a 4-column bento on desktop
+const tiles = [
+  { src: akGcpd, alt: 'Batman: Arkham Knight overlooking the GCPD', span: 'feature', pos: 'center', w: 1100 },
+  { src: acRooftop, alt: 'Batman on a rooftop over Gotham in Arkham City', span: 'wide', pos: 'center', w: 900 },
+  { src: modGiant, alt: 'An oversized enemy spawned in with BmSDK', span: 'tile', pos: 'center', w: 700 },
+  { src: debugXray, alt: 'X-ray debug view of two players', span: 'tile', pos: 'center', w: 700 },
+  { src: editorLights, alt: 'Editing a light actor and seeing it update live in-game', span: 'wide', pos: 'top', w: 1000 },
+  { src: aceChemicals, alt: 'ACE Chemicals at night in Arkham City', span: 'wide', pos: 'center', w: 900 },
+]
+
+const spanStyles = {
+  feature: css({ gridColumn: { md: 'span 2' }, gridRow: { md: 'span 2' } }),
+  wide: css({ gridColumn: { md: 'span 2' } }),
+  tile: css({ gridColumn: 'span 1' }),
+}
+---
+
+<section
+  class={css({
+    borderTop: '1px solid',
+    borderColor: 'border.subtle',
+    bg: 'bg.canvas',
+  })}
+>
+  <div
+    class={css({
+      maxW: '1080px',
+      mx: 'auto',
+      px: { base: '4', md: '6' },
+      py: { base: '16', md: '24' },
+    })}
+  >
+    <h2
+      class={css({
+        fontSize: { base: '2xl', md: '4xl' },
+        fontWeight: 'bold',
+        letterSpacing: 'tight',
+        color: 'fg.default',
+      })}
+    >
+      Showcase
+    </h2>
+    <p class={css({ mt: '3', fontSize: 'md', color: 'fg.muted', maxW: '38rem' })}>
+      Spawning characters, editing the world live, and poking at the game from
+      C# — across both Arkham City and Arkham Knight.
+    </p>
+
+    <div
+      class={css({
+        mt: '10',
+        display: 'grid',
+        gridTemplateColumns: { base: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },
+        gridAutoRows: { base: 'auto', md: '150px', lg: '172px' },
+        gridAutoFlow: 'dense',
+        gap: '3',
+      })}
+    >
+      {
+        tiles.map((tile) => (
+          <figure
+            class={`${spanStyles[tile.span]} ${css({
+              position: 'relative',
+              m: '0',
+              borderRadius: 'lg',
+              overflow: 'hidden',
+              border: '1px solid',
+              borderColor: 'border.default',
+              bg: 'bg.subtle',
+              aspectRatio: { base: '16 / 10', md: 'auto' },
+              transition: 'border-color 0.2s',
+              _hover: {
+                borderColor: 'border.default',
+                '& img': { transform: 'scale(1.04)' },
+              },
+            })}`}
+          >
+            <Image
+              src={tile.src}
+              alt={tile.alt}
+              width={tile.w}
+              quality={68}
+              format="webp"
+              loading="lazy"
+              class={css({
+                w: '100%',
+                h: '100%',
+                objectFit: 'cover',
+                display: 'block',
+                transition: 'transform 0.4s ease',
+              })}
+              style={`object-position: ${tile.pos};`}
+            />
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
