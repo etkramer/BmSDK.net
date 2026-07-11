@@ -3,6 +3,7 @@ export const codeSample = {
   lang: 'csharp' as const,
   code: `using BmSDK;
 using BmSDK.BmGame;
+using BmSDK.BmScript;
 
 [Script]
 public class DemoScript : Script
@@ -14,8 +15,10 @@ public class DemoScript : Script
 
         var player = Game.GetPlayerPawn();
 
-        // Spawn Joker in front of the player
+        // Load .upk with RCharacter_Joker
         Game.LoadPackage("FunFair");
+
+        // Spawn Joker in front of the player
         var joker = new RPawnVillainThug(player.Location, player.Rotation);
         joker.InitCharacter(RCharacter_Joker.StaticClass());
 
