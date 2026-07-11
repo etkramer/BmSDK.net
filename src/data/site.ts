@@ -1,5 +1,5 @@
-const city = 'https://github.com/etkramer/BmSDK'
-const knight = 'https://github.com/etkramer/BmSDK-AK'
+const city = 'https://github.com/Team-BmSDK/BmSDK-AC'
+const knight = 'https://github.com/Team-BmSDK/BmSDK-AK'
 
 export const site = {
   name: 'BmSDK',
