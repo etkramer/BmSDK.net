@@ -1,113 +1,113 @@
 ---
-import {Image, getImage} from "astro:assets";
-import {css} from "styled-system/css";
-import {surface} from "styled-system/recipes";
-import {Maximize2} from "@/lib/icons";
-import Section from "@/components/layout/Section.astro";
-import SectionHeading from "@/components/layout/SectionHeading.astro";
-import {showcaseTiles} from "@/data/showcase";
+import { Image, getImage } from 'astro:assets'
+import { css, cx } from 'styled-system/css'
+import { surface } from 'styled-system/recipes'
+import { Maximize2 } from '@/lib/icons'
+import Section from '@/components/layout/Section.astro'
+import SectionHeading from '@/components/layout/SectionHeading.astro'
+import { showcaseTiles } from '@/data/showcase'
 
 const spanStyles = {
-  feature: css({gridColumn: {md: "span 2"}, gridRow: {md: "span 2"}}),
-  wide: css({gridColumn: {md: "span 2"}}),
-  tile: css({gridColumn: "span 1"}),
-};
+  feature: css({ gridColumn: { md: 'span 2' }, gridRow: { md: 'span 2' } }),
+  wide: css({ gridColumn: { md: 'span 2' } }),
+  tile: css({ gridColumn: 'span 1' }),
+}
 
 // full-resolution sources for the lightbox
 const tiles = await Promise.all(
   showcaseTiles.map(async (tile) => ({
     ...tile,
-    full: (
-      await getImage({src: tile.src, width: 1920, format: "webp", quality: 82})
-    ).src,
-  })),
-);
+    full: (await getImage({ src: tile.src, width: 1920, format: 'webp', quality: 82 })).src,
+  }))
+)
 ---
 
 <Section>
-  <SectionHeading title='Showcase' />
+  <SectionHeading title="Showcase" />
 
   <div
     class={css({
-      mt: "10",
-      display: "grid",
+      mt: '10',
+      display: 'grid',
       gridTemplateColumns: {
-        base: "1fr",
-        sm: "repeat(2, 1fr)",
-        md: "repeat(4, 1fr)",
+        base: '1fr',
+        sm: 'repeat(2, 1fr)',
+        md: 'repeat(4, 1fr)',
       },
-      gridAutoRows: {base: "auto", md: "150px", lg: "172px"},
-      gridAutoFlow: "dense",
-      gap: "3",
+      gridAutoRows: { base: 'auto', md: '150px', lg: '172px' },
+      gridAutoFlow: 'dense',
+      gap: '3',
     })}
   >
     {
       tiles.map((tile) => (
         <button
-          type='button'
+          type="button"
           data-lightbox
           data-full={tile.full}
           aria-label={`Expand: ${tile.alt}`}
-          class={`${spanStyles[tile.span]} ${surface({radius: "lg", tone: "subtle"})} ${css(
-            {
-              appearance: "none",
-              p: "0",
-              font: "inherit",
-              color: "inherit",
-              textAlign: "left",
-              cursor: "zoom-in",
-              position: "relative",
-              display: "block",
-              w: "100%",
-              overflow: "hidden",
-              aspectRatio: {base: "16 / 10", md: "auto"},
-              transition: "border-color 0.2s",
+          class={cx(
+            spanStyles[tile.span],
+            surface({ radius: 'lg', tone: 'subtle' }),
+            css({
+              appearance: 'none',
+              p: '0',
+              font: 'inherit',
+              color: 'inherit',
+              textAlign: 'left',
+              cursor: 'zoom-in',
+              position: 'relative',
+              display: 'block',
+              w: '100%',
+              overflow: 'hidden',
+              aspectRatio: { base: '16 / 10', md: 'auto' },
+              transition: 'border-color 0.2s',
               _hover: {
-                "& img": {transform: "scale(1.04)"},
-                "& [data-expand]": {opacity: "1"},
+                '& img': { transform: 'scale(1.04)' },
+                '& [data-expand]': { opacity: '1' },
               },
               _focusVisible: {
-                outline: "2px solid",
-                outlineColor: "border.outline",
-                outlineOffset: "2px",
-                "& [data-expand]": {opacity: "1"},
+                outline: '2px solid',
+                outlineColor: 'border.outline',
+                outlineOffset: '2px',
+                '& [data-expand]': { opacity: '1' },
               },
-            },
-          )}`}
+            })
+          )}
         >
           <Image
             src={tile.src}
             alt={tile.alt}
             width={tile.w}
             quality={68}
-            format='webp'
-            loading='lazy'
+            format="webp"
+            loading="lazy"
             class={css({
-              w: "100%",
-              h: "100%",
-              objectFit: "cover",
-              display: "block",
-              transition: "transform 0.4s ease",
+              w: '100%',
+              h: '100%',
+              objectFit: 'cover',
+              display: 'block',
+              transition: 'transform 0.4s ease',
             })}
             style={`object-position: ${tile.pos};`}
           />
           <span
             data-expand
             class={css({
-              position: "absolute",
-              top: "2.5",
-              right: "2.5",
-              display: "grid",
-              placeItems: "center",
-              w: "7",
-              h: "7",
-              borderRadius: "md",
-              color: "white",
-              bg: "rgba(1, 4, 9, 0.55)",
-              backdropFilter: "blur(4px)",
-              opacity: "0",
-              transition: "opacity 0.2s",
-              pointerEvents: "none",
+              position: 'absolute',
+              top: '2.5',
+              right: '2.5',
+              display: 'grid',
+              placeItems: 'center',
+              w: '7',
+              h: '7',
+              borderRadius: 'md',
+              color: 'white',
+              bg: 'rgba(1, 4, 9, 0.55)',
+              backdropFilter: 'blur(4px)',
+              opacity: '0',
+              transition: 'opacity 0.2s',
+              pointerEvents: 'none',
             })}
           >
             <Maximize2 size={14} />
@@ -119,57 +119,55 @@ const tiles = await Promise.all(
 </Section>
 
 <dialog
-  id='showcase-dialog'
+  id="showcase-dialog"
   class={css({
-    m: "auto",
-    p: "0",
-    border: "none",
-    bg: "transparent",
-    maxW: "92vw",
-    maxH: "92vh",
-    "&::backdrop": {
-      bg: "rgba(1, 4, 9, 0.82)",
-      backdropFilter: "blur(4px)",
+    m: 'auto',
+    p: '0',
+    border: 'none',
+    bg: 'transparent',
+    maxW: '92vw',
+    maxH: '92vh',
+    '&::backdrop': {
+      bg: 'rgba(1, 4, 9, 0.82)',
+      backdropFilter: 'blur(4px)',
     },
   })}
 >
   <img
-    alt=''
+    alt=""
     class={css({
-      display: "block",
-      maxW: "92vw",
-      maxH: "92vh",
-      w: "auto",
-      h: "auto",
-      borderRadius: "lg",
-      border: "1px solid",
-      borderColor: "border.default",
+      display: 'block',
+      maxW: '92vw',
+      maxH: '92vh',
+      w: 'auto',
+      h: 'auto',
+      borderRadius: 'lg',
+      border: '1px solid',
+      borderColor: 'border.default',
     })}
   />
 </dialog>
 
 <script>
-  const dialog = document.getElementById(
-    "showcase-dialog",
-  ) as HTMLDialogElement | null;
+  const dialog = document.getElementById('showcase-dialog') as HTMLDialogElement | null
   if (dialog) {
-    const img = dialog.querySelector("img")!;
-    document.querySelectorAll<HTMLElement>("[data-lightbox]").forEach((el) => {
-      el.addEventListener("click", async () => {
-        const full = el.dataset.full;
-        if (!full) return;
-        img.src = full;
-        img.alt = el.getAttribute("aria-label") ?? "";
+    const img = dialog.querySelector('img')!
+    document.querySelectorAll<HTMLElement>('[data-lightbox]').forEach((el) => {
+      el.addEventListener('click', async () => {
+        const full = el.dataset.full
+        if (!full) return
+        img.src = full
+        img.alt = el.getAttribute('aria-label') ?? ''
         // wait for the new image to decode so we never flash the previous one
         try {
-          await img.decode();
+          await img.decode()
         } catch {}
-        if (!dialog.open) dialog.showModal();
-      });
-    });
+        if (!dialog.open) dialog.showModal()
+      })
+    })
     // click on the backdrop (outside the image) closes; Escape is handled natively
-    dialog.addEventListener("click", (e) => {
-      if (e.target === dialog) dialog.close();
-    });
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close()
+    })
   }
 </script>

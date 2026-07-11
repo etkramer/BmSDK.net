@@ -119,7 +119,9 @@ export default defineConfig({
             inset: { value: { _light: '#f6f8fa', _dark: '#010409' } },
             link: { value: { _light: '#0969da', _dark: '#2f81f7' } },
             linkHover: { value: { _light: '#0757ba', _dark: '#58a6ff' } },
-            neutralMuted: { value: { _light: 'rgba(175,184,193,0.2)', _dark: 'rgba(110,118,129,0.4)' } },
+            neutralMuted: {
+              value: { _light: 'rgba(175,184,193,0.2)', _dark: 'rgba(110,118,129,0.4)' },
+            },
           },
         },
       },

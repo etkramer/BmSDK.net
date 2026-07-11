@@ -36,7 +36,13 @@ const navLink = css({
     </a>
 
     <nav class={css({ display: { base: 'none', md: 'flex' }, alignItems: 'center', gap: '6' })}>
-      {headerNav.map((link) => <a href={link.href} class={navLink}>{link.label}</a>)}
+      {
+        headerNav.map((link) => (
+          <a href={link.href} class={navLink}>
+            {link.label}
+          </a>
+        ))
+      }
     </nav>
 
     <a
