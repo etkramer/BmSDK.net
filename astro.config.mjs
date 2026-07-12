@@ -4,7 +4,7 @@ import react from '@astrojs/react'
 // https://astro.build/config
 export default defineConfig({
   // Served from GitHub Pages on the custom domain bmsdk.dev (CNAME in public/).
-  site: 'https://www.bmsdk.dev',
+  site: 'https://bmsdk.dev',
   integrations: [react()],
   vite: {
     ssr: {
