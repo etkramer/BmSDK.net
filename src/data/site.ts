@@ -9,6 +9,11 @@ export const site = {
 }
 
 export const links = {
+  docs: {
+    home: '/docs/',
+    firstMod: '/docs/getting-started/first-mod/',
+    building: '/docs/contributing/building/',
+  },
   city: {
     repo: city,
     releases: `${city}/releases/latest`,

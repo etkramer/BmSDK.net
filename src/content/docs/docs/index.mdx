@@ -1,0 +1,43 @@
+---
+title: BmSDK Documentation
+description: Guides and references for modding Batman Arkham City and Arkham Knight with BmSDK.
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components'
+
+Welcome to the BmSDK docs. BmSDK is a C#-based script hook and modding SDK for
+**Batman: Arkham City** and **Batman: Arkham Knight**. It hooks into Unreal
+Engine 3's event loop and exposes a full C# SDK so you can extend the games with
+custom gameplay and logic.
+
+## Start here
+
+<CardGrid>
+  <LinkCard
+    title="Creating your first mod"
+    description="Set up a project, write your first script, and add gameplay logic."
+    href="/docs/getting-started/first-mod/"
+  />
+  <LinkCard
+    title="Redirecting functions"
+    description="Detour in-game UFunctions to override built-in behavior."
+    href="/docs/guides/redirecting-functions/"
+  />
+  <LinkCard
+    title="Script components"
+    description="Extend in-game classes with reusable, attachable behavior."
+    href="/docs/guides/script-components/"
+  />
+  <LinkCard
+    title="Building from source"
+    description="Build BmSDK yourself to create nightly builds and contribute."
+    href="/docs/contributing/building/"
+  />
+</CardGrid>
+
+## Useful links
+
+- [Arkham City repository](https://github.com/Team-BmSDK/BmSDK-AC)
+- [Arkham Knight repository](https://github.com/Team-BmSDK/BmSDK-AK)
+- [Latest release](https://github.com/etkramer/BmSDK/releases/latest)
+- [Arkham Workshop (Discord)](https://discord.gg/FN84a5MRsz)
