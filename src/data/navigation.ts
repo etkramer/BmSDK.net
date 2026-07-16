@@ -9,7 +9,6 @@ export const headerNav: NavLink[] = [
   { label: 'Arkham City', href: links.city.repo },
   { label: 'Arkham Knight', href: links.knight.repo },
   { label: 'Docs', href: links.docs.home },
-  { label: 'Releases', href: links.city.releases },
 ]
 
 export interface FooterColumn {

@@ -1,0 +1,35 @@
+---
+// Overrides Starlight's SocialIcons to carry the marketing site's top nav into
+// the docs header, so the transition between the two doesn't drop the nav bar.
+// Uses Starlight's own color vars (Panda's CSS isn't loaded on docs pages).
+import Default from '@astrojs/starlight/components/SocialIcons.astro'
+import { headerNav } from '@/data/navigation'
+---
+
+<nav class="site-nav">
+  {
+    headerNav.map((link) => (
+      <a href={link.href}>{link.label}</a>
+    ))
+  }
+</nav>
+<Default><slot /></Default>
+
+<style>
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-inline-end: 0.25rem;
+  }
+  .site-nav a {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s;
+  }
+  .site-nav a:hover {
+    color: var(--sl-color-white);
+  }
+</style>

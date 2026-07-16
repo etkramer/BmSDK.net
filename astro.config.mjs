@@ -13,21 +13,22 @@ export default defineConfig({
       title: 'BmSDK',
       description:
         'Documentation for BmSDK, a C#-based script hook/modding SDK for Batman: Arkham City and Arkham Knight.',
-      logo: { src: './src/assets/logo.svg', alt: 'BmSDK' },
       favicon: '/favicon.svg',
       customCss: ['./src/styles/starlight-theme.css'],
+      components: {
+        SocialIcons: './src/components/docs/SocialIcons.astro',
+        SiteTitle: './src/components/docs/SiteTitle.astro',
+      },
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/Team-BmSDK/BmSDK-AC' }],
       sidebar: [
         {
           label: 'Getting Started',
-          items: [
-            { label: 'Introduction', slug: 'docs' },
-            { label: 'Creating your first mod', slug: 'docs/getting-started/first-mod' },
-          ],
+          items: [{ label: 'Introduction', slug: 'docs' }],
         },
         {
           label: 'Guides',
           items: [
+            { label: 'Creating your first mod', slug: 'docs/getting-started/first-mod' },
             { label: 'Redirecting functions', slug: 'docs/guides/redirecting-functions' },
             { label: 'Script components', slug: 'docs/guides/script-components' },
           ],
